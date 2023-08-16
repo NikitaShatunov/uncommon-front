@@ -1,8 +1,10 @@
 {
   "name": "uncommon-front",
   "version": "0.1.0",
+  "proxy": "http://localhost:4000",
   "private": true,
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -10,8 +12,13 @@
     "@types/node": "^16.18.40",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
+    "axios": "^1.4.0",
+    "qs": "^6.11.2",
     "react": "^18.2.0",
+    "react-content-loader": "^6.2.1",
     "react-dom": "^18.2.0",
+    "react-redux": "^8.1.2",
+    "react-router-dom": "^6.15.0",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
@@ -20,7 +27,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "sb": "storybook dev -p 6006",
+    "sass": "sass src/App.scss dist/src/App.css",
+    "build-storybook": "storybook build"
   },
   "eslintConfig": {
     "extends": [
@@ -39,5 +49,22 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^7.2.3",
+    "@storybook/addon-interactions": "^7.2.3",
+    "@storybook/addon-links": "^7.2.3",
+    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/addon-styling": "^1.3.6",
+    "@storybook/blocks": "^7.2.3",
+    "@storybook/preset-create-react-app": "^7.2.3",
+    "@storybook/react": "^7.2.3",
+    "@storybook/react-webpack5": "^7.2.3",
+    "@storybook/testing-library": "^0.2.0",
+    "babel-plugin-named-exports-order": "^0.0.2",
+    "prop-types": "^15.8.1",
+    "sass": "^1.65.1",
+    "storybook": "^7.2.3",
+    "webpack": "^5.88.2"
   }
 }

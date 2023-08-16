@@ -1,0 +1,108 @@
+.header__container, .footer__container {
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header__container__large, .footer__container__large {
+  height: 100px;
+}
+.header__container__medium, .footer__container__medium {
+  height: 60px;
+}
+.header__container__small, .footer__container__small {
+  height: 30px;
+}
+.header__container li, .footer__container li {
+  margin-left: 14px;
+  font-size: 26px;
+}
+.header__container a, .footer__container a {
+  margin-left: 14px;
+  font-size: 26px;
+  cursor: pointer;
+}
+.header__container a:hover, .footer__container a:hover {
+  color: lightgrey;
+}
+@media screen and (max-width: 900px) {
+  .header__container li, .header__container a, .footer__container li, .footer__container a {
+    font-size: 16px;
+  }
+}
+
+.footer__container li, .footer__container a {
+  font-size: 16px;
+}
+
+.home__wrapper {
+  background-color: black;
+  color: white;
+  text-align: center;
+  min-height: 5054px;
+  width: 100%;
+}
+.home__wrapper .logoContainer {
+  display: flex;
+  justify-content: center;
+}
+.home__wrapper .logoContainer img {
+  width: 100%;
+}
+.home__wrapper .signature__container {
+  display: flex;
+  justify-content: center;
+  margin-top: 160px;
+}
+.home__wrapper .signature__container .content {
+  width: 1277px;
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.home__wrapper h1 {
+  margin-top: 80px;
+  text-align: center;
+  font-size: 72px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.home__wrapper .imageContainer {
+  display: block;
+}
+.home__wrapper .imageContainer div {
+  margin-top: 64px;
+}
+@media screen and (max-width: 900px) {
+  .home__wrapper .imageContainer img {
+    width: 300px;
+  }
+}
+.home__wrapper h3 {
+  margin-top: 170px;
+  text-align: left;
+  padding-left: 60px;
+  font-size: 72px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: normal;
+}
+.home__wrapper .rockimg {
+  margin-top: 110px;
+}
+.home__wrapper a {
+  cursor: pointer;
+  font-size: 72px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.home__wrapper a:hover {
+  color: lightgrey;
+}
+
+/*# sourceMappingURL=App.css.map */

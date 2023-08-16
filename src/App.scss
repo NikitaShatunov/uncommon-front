@@ -1,0 +1,341 @@
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.header__container,
+.footer__container {
+  &__large {
+    height: 100px;
+  }
+  &__medium {
+    height: 60px;
+  }
+  &__small {
+    height: 30px;
+  }
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  li {
+    margin-left: 14px;
+    font-size: 26px;
+  }
+  a {
+    margin-left: 14px;
+    font-size: 26px;
+    cursor: pointer;
+    &:hover {
+      color: lightgrey;
+    }
+  }
+  @media screen and (max-width: 900px) {
+    li,
+    a {
+      font-size: 16px;
+    }
+  }
+}
+.footer__container {
+  li,
+  a {
+    font-size: 16px;
+  }
+}
+.mainWrapper {
+  flex: 1 1 auto;
+}
+.home__wrapper {
+  background-color: black;
+  color: white;
+  text-align: center;
+  min-height: 5054px;
+  width: 100%;
+  .logoContainer {
+    display: flex;
+    justify-content: center;
+    img {
+      width: 100%;
+    }
+  }
+  .signature__container {
+    display: flex;
+    justify-content: center;
+    margin-top: 160px;
+    .content {
+      width: 1277px;
+      text-align: center;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+  }
+  h1 {
+    margin-top: 80px;
+    text-align: center;
+    font-size: 72px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  .imageContainer {
+    display: block;
+    div {
+      margin-top: 64px;
+    }
+    @media screen and (max-width: 900px) {
+      img {
+        width: 300px;
+      }
+    }
+  }
+  h3 {
+    margin-top: 170px;
+    text-align: left;
+    padding-left: 60px;
+    font-size: 72px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .rockimg {
+    margin-top: 110px;
+  }
+  a {
+    cursor: pointer;
+    &:hover {
+      color: lightgrey;
+    }
+    font-size: 72px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+}
+
+.itemBlock {
+  width: 300px;
+  height: 472px;
+  img {
+    height: 400px;
+    width: 300px;
+  }
+  .legend {
+    margin-left: 8px;
+    margin-top: 8px;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  cursor: pointer;
+}
+
+.searcgingPanel {
+  height: 100px;
+  .searching {
+    margin: 64px 0 0 32px;
+    position: relative;
+    width: 480px;
+    border-bottom: 3px solid black;
+    @media screen and (max-width: 900px) {
+      width: 330px;
+    }
+    input {
+      @media screen and (max-width: 900px) {
+        width: 270px;
+      }
+      width: 420px;
+      font-size: 28px;
+      padding-left: 2px;
+    }
+    .buttonSearch {
+      position: absolute;
+      bottom: 6px;
+      right: 0;
+      font-size: 18px;
+      cursor: pointer;
+    }
+  }
+}
+
+.main {
+  @media screen and (min-width: 900px) {
+    display: flex;
+  }
+  .sideBar {
+    margin-left: 32px;
+    width: 280px;
+    min-height: 1000px;
+    .label {
+      font-size: 28px;
+      span {
+        cursor: pointer;
+        &:hover {
+          color: grey;
+        }
+      }
+    }
+    ul {
+      margin-top: 18px;
+      font-size: 20px;
+      span {
+        font-size: 24px;
+      }
+      li {
+        margin-top: 4px;
+        cursor: pointer;
+        width: fit-content;
+        position: relative;
+        user-select: none;
+      }
+      .active::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: black;
+      }
+    }
+  }
+  .catalogCarts {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .itemContainer {
+      margin-left: 64px;
+      margin-bottom: 80px;
+    }
+  }
+}
+
+.itemPage {
+  .main {
+    margin-top: 70px;
+    position: relative;
+    .arrowLeft,
+    .arrowRight {
+      cursor: pointer;
+      position: absolute;
+      top: 260px;
+    }
+    .arrowLeft {
+      left: 85px;
+    }
+    .arrowRight {
+      -webkit-transform: scaleX(-1);
+      transform: scaleX(-1);
+      right: 410px;
+      z-index: 1;
+    }
+    .mainPhoto,
+    .secondPhoto {
+      width: 450px;
+      height: 600px;
+    }
+    .mainPhoto {
+      margin-left: 134px;
+    }
+    .secondPhoto {
+      width: 330px;
+      height: 440px;
+      opacity: 0.6;
+      position: absolute;
+      right: 0;
+      top: 100px;
+    }
+  }
+  .details {
+    margin-left: 20px;
+    margin-bottom: 24px;
+    width: 354px;
+    height: 664px;
+    .header {
+      .brand {
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+      .price {
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        margin-top: 14px;
+      }
+    }
+    .description {
+      margin-top: 34px;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+    .features {
+      margin-top: 14px;
+    }
+    .sizesContainer {
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-evenly;
+    }
+  }
+}
+.sizeBlock {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  &:hover {
+    border: 1px solid black;
+  }
+  &__active,
+  &:active {
+    background-color: black;
+    color: white;
+  }
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  &__small {
+    padding: 10px;
+  }
+  &__medium {
+    padding: 14px 44px;
+  }
+  &__large {
+    padding: 20px 60px;
+  }
+  border: 1px solid black;
+  background-color: white;
+  &__primary {
+    background-color: black;
+    color: white;
+    border: none;
+  }
+}
+
+.buttonContainer {
+  margin-top: 24px;
+  width: 352px;
+}
