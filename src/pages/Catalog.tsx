@@ -8,16 +8,21 @@ import { useAppDispatch, useAppSelector } from "../redux/redux";
 import { fetchItems } from "../redux/slices/fetchSlice";
 import ItemSkeleton from "../components/ItemSkeleton";
 import { useNavigate } from "react-router-dom";
-import { setCategories, setGenders } from "../redux/slices/sortSlice";
+import { setCategories, setColors, setGenders } from "../redux/slices/sortSlice";
 
 const Catalog = () => {
  const {loading, error, data} = useAppSelector(state => state.fetchSlice)
- const genders = useAppSelector((state) => state.sortSlice.genders);
- const categories = useAppSelector((state) => state.sortSlice.categories);
+ const {genders, categories, colors} =  useAppSelector((state) => state.sortSlice)
+
  const dispatch = useAppDispatch()
  const navigate = useNavigate()
  const fetchData = async () => {
-  dispatch(fetchItems())
+  const props = {
+    genders,
+    categories,
+    colors
+  }
+  dispatch(fetchItems(props))
 }
  React.useEffect(() => {
 
@@ -28,17 +33,24 @@ const Catalog = () => {
   if (params.categories && Array.isArray(params.categories)) {
     params.categories.map(key => dispatch(setCategories(key)))
   }
-  fetchData()
+  if (params.colors && Array.isArray(params.colors)) {
+    params.colors.map(key => dispatch(setColors(key)))
+  }
+  
  }, [])
-  React.useEffect(() => {
+ React.useEffect(() => {
+  fetchData()
+ }, [genders, categories, colors])
+  React.useEffect(() => {    
     if(data) {
       const queryString = qs.stringify({
         genders,
-        categories
+        categories,
+        colors
       })
       navigate(`?${queryString}`)
     }
-  }, [data, genders, categories]);
+  }, [data, genders, categories, colors]);
   return (
     <div className="catalog__wrapper">
       <SearchingPanel />

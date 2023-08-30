@@ -4,6 +4,9 @@ import SizeButton from "../components/SizeButton";
 import { useAppDispatch, useAppSelector } from "../redux/redux";
 import { fetchItemsById } from "../redux/slices/fetchSlice";
 import Button from "../components/Button";
+import { addItemCart } from "../redux/slices/cartSlice";
+import { v4 as uuidv4 } from 'uuid';
+import ItemPageSkeleton from "../components/ItemPageSkeleton";
 
 export interface Item {
   id: number;
@@ -26,12 +29,22 @@ const ItemPage = () => {
   const [chosedSize, setChoosedSize] = React.useState("");
   const [photos, setPhotos] = React.useState<Array<string>>([]);
   const [currentPhotoId, setCurrentPhotoId] = React.useState(0);
+
+  const [isPopUpShown, setIsPopUpShown] = React.useState(false)
+  const [isButtonAvailable, setIsButtonAvailable] = React.useState(false);
+
   const dispatch = useAppDispatch();
   const params = useParams();
   const fetchItem = async () => {
     dispatch(fetchItemsById(params.id));
   };
-  React.useEffect(() => {},[chosedSize])
+  React.useEffect(() => {
+    if (!chosedSize.length) {
+      setIsButtonAvailable(false);
+    } else {
+      setIsButtonAvailable(true);
+    }
+  }, [chosedSize]);
   React.useEffect(() => {
     fetchItem();
   }, []);
@@ -53,15 +66,31 @@ const ItemPage = () => {
     }
   };
   const onClickSize = (s: string) => {
-    setChoosedSize(s)
+    setChoosedSize(s);
   };
-  const onClickButton = () => {};
+  const onClickButton = () => {
+    const item = {
+      hash: uuidv4(),
+      id: itemData.id,
+      size: chosedSize,
+      price: itemData.price,
+      photo: itemData.mainPhoto,
+      brand: itemData.brand,
+      category: itemData.category
+    };
+    if (chosedSize.length) {
+      dispatch(addItemCart(item));
+    }
+  };
   return (
     <div className="itemPage">
       <div className="main">
-        {loading && <h1>Loading</h1>}
+        {loading && <ItemPageSkeleton />}
         {!loading && (
           <>
+          <div onClick={() => setIsPopUpShown(false)} style={isPopUpShown ? {display: "flex"} : {display: 'none'}} className="popUpImg">
+            <img src={photos[currentPhotoId]} alt="photo" />
+          </div>
             {currentPhotoId !== photos.length - 1 && (
               <img
                 onClick={() => onClickArrow(true)}
@@ -79,6 +108,8 @@ const ItemPage = () => {
               />
             )}
             <img
+            style={{cursor: "zoom-in"}}
+              onClick={() => setIsPopUpShown(true)}
               className="mainPhoto"
               src={photos[currentPhotoId]}
               alt="mainphoto"
@@ -95,6 +126,7 @@ const ItemPage = () => {
               <div className="header">
                 <div className="brand">{itemData?.brand}</div>
                 <div className="price">€ {itemData?.price}</div>
+                <div className="title">{itemData?.title}</div>
               </div>
               <div className="description">{itemData?.description}</div>
               <ul className="features">
@@ -103,11 +135,17 @@ const ItemPage = () => {
               </ul>
               <div className="sizesContainer">
                 {itemData?.sizes.map((size, i) => (
-                  <SizeButton chosedSize={chosedSize} key={i} size={size} onClickSize={onClickSize} />
+                  <SizeButton
+                    chosedSize={chosedSize}
+                    key={i}
+                    size={size}
+                    onClickSize={onClickSize}
+                  />
                 ))}
               </div>
               <div className="buttonContainer">
                 <Button
+                  available={isButtonAvailable}
                   onClickButton={() => onClickButton()}
                   size="medium"
                   primary={true}

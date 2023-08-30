@@ -4,8 +4,24 @@ import { Item } from '../../pages/ItemPage';
 
 
 
-export const fetchItems = createAsyncThunk('data/fetchItems', async () => {
-  const { data } = await axios.get(`http://localhost:4000/items`);
+export const fetchItems: any = createAsyncThunk('data/fetchItems', async ({genders, categories, colors}: any) => {
+  let queryString = `?`
+  if(genders.length) {
+    genders.forEach((element: string) => {
+      queryString += `gender=${element}&`
+    })
+  }
+  if(categories.length) {
+    categories.forEach((element: string) => {
+      queryString += `categories=${element}&`
+    })
+  }
+  if(colors.length) {
+    colors.forEach((element: string) => {
+      queryString += `colors=${element}&`
+    })
+  }
+  const { data } = await axios.get(`http://localhost:4000/items${queryString}`);
   return data;
 });
 export const fetchItemsById: any = createAsyncThunk('data/fetchItemsById', async (id) => {
@@ -17,7 +33,7 @@ export const fetchItemsById: any = createAsyncThunk('data/fetchItemsById', async
     data: [],
     item: Item,
     loading: boolean,
-    error: null,
+    error: null | Error,
   }
   const initialState: InitialState = {
     data: [],
