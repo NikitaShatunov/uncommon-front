@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit"
 
 type Genders = Array<"man" | "woman" | "unisex" >;
 type  Colors = Array<'brown' | 'black' | 'pink' | 'green' | 'yellow'>
@@ -22,17 +22,17 @@ const initialState: Sort = {
   genders: [],
   categories: [],
   colors: []
-};
+}
 
 const sortSlice = createSlice({
   name: "sort",
   initialState,
   reducers: {
     setGenders(state, action) {
-      state.genders.push(action.payload);
+      state.genders.push(action.payload)
     },
     setCategories(state, action) {
-      state.categories.push(action.payload);
+      state.categories.push(action.payload)
     },
     setColors(state, action) {
       state.colors.push(action.payload)
@@ -52,7 +52,7 @@ const sortSlice = createSlice({
       state.colors = []
     }
   },
-});
+})
 export const {setCategories, setGenders, removeCategories, removeGenders, clearSort, setColors, removeColors} = sortSlice.actions
 
 export default sortSlice.reducer

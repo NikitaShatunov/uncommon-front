@@ -1,11 +1,11 @@
-import { ReactNode } from "react";
+import { ReactNode } from "react"
 
 interface ButtonProps {
-  onClickButton: (prop?: string) => void;
-  children?: ReactNode;
-  size: "small" | "medium" | "large";
-  primary: boolean;
-  available: boolean;
+  onClickButton: (prop?: string) => void
+  children?: ReactNode
+  size: "small" | "medium" | "large"
+  primary: boolean
+  available: boolean
   type?: 'submit' | 'reset' | 'button'
 }
 
@@ -27,7 +27,7 @@ const Button = ({
     >
       {children}
     </button>
-  );
-};
+  )
+}
 
-export default Button;
+export default Button

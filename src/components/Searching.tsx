@@ -1,6 +1,6 @@
 interface SearchingProps {
-  onChangeInput: (value: string) => void;
-  value: string;
+  onChangeInput: (value: string) => void
+  value: string
 }
 
 const Searching = ({ onChangeInput, value }: SearchingProps) => {
@@ -9,7 +9,7 @@ const Searching = ({ onChangeInput, value }: SearchingProps) => {
       <input value={value} onChange={(e) => onChangeInput(e.target.value)} />
       <span className="buttonSearch">search</span>
     </div>
-  );
-};
+  )
+}
 
-export default Searching;
+export default Searching

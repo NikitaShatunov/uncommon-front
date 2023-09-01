@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
 interface Item {
-  id: number;
-  mainPhoto: string;
-  brand: string;
-  category: string;
-  price: number;
+  id: number
+  mainPhoto: string
+  brand: string
+  category: string
+  price: number
 }
 const ItemBlock = ({ id, mainPhoto, brand, category, price }: Item) => {
   return (
@@ -18,7 +18,7 @@ const ItemBlock = ({ id, mainPhoto, brand, category, price }: Item) => {
         </div>
       </div>
     </Link>
-  );
-};
+  )
+}
 
-export default ItemBlock;
+export default ItemBlock

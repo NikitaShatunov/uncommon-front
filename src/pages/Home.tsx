@@ -23,7 +23,7 @@ const Home = () => {
       <img className="rockimg" src="/img/rock.svg" alt="rock" />
       <div style={{marginTop: 110}}><a href="/catalog">catalog</a></div>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

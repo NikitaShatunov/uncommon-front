@@ -1,14 +1,14 @@
-import { Link } from "react-router-dom";
-import * as React from "react";
-import Cart from "./Cart";
-import { useAppSelector } from "../redux/redux";
+import { Link } from "react-router-dom"
+import * as React from "react"
+import Cart from "./Cart"
+import { useAppSelector } from "../redux/redux"
 
 interface HeaderProps {
-  size: "small" | "medium" | "large";
-  backgroundColor?: string;
-  color?: string;
-  links: string[];
-  location: string;
+  size: "small" | "medium" | "large"
+  backgroundColor?: string
+  color?: string
+  links: string[]
+  location: string
 }
 
 const Header = ({
@@ -18,19 +18,19 @@ const Header = ({
   color,
   location,
 }: HeaderProps) => {
-  const [isCartShown, setIsCartShown] = React.useState(false);
+  const [isCartShown, setIsCartShown] = React.useState(false)
   const items = useAppSelector(state => state.cartSlice.items)
   React.useEffect(() => {
     if(!isCartShown && items.length) {
       setIsCartShown(true)
     }
-  }, [items]);
+  }, [items])
   React.useEffect(() => {
 
   }, [isCartShown])
   const onClickModal = () => {
-    setIsCartShown(false);
-  };
+    setIsCartShown(false)
+  }
   return (
     <>
       <ul
@@ -68,7 +68,7 @@ const Header = ({
       </ul>
       <Cart handler={() => onClickModal()} isCartShown={isCartShown} />
     </>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

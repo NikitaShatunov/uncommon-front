@@ -1,13 +1,34 @@
-import LoginForm from "../components/LoginForm";
-import RegistrationForm from "../components/RegistrationForm";
+import LoginForm from "../components/LoginForm"
+import RegistrationForm from "../components/RegistrationForm"
+import * as React from 'react'
+import { useAppDispatch, useAppSelector } from "../redux/redux"
+import Button from "../components/Button"
+import { logout } from "../redux/slices/authSlice"
 
 const Account = () => {
+    const { data } = useAppSelector(state => state.authSlice)
+    const dispatch = useAppDispatch()
+    React.useEffect(() => {
+        
+    }, [data])
+    const onClickLogout = () => {
+        dispatch(logout())
+        window.localStorage.removeItem('token')
+    }
     return ( <div className="accountContainer">
-        <div className="fomrWrapper">
-           <LoginForm />
-           <RegistrationForm />
-        </div>
-    </div> );
+        {
+            data.length === 0 ? <div className="fomrWrapper">
+            <LoginForm />
+            <RegistrationForm />
+         </div> : <div className="accountWrapper">
+          <div>
+          <div className="name">welcome, {data?.email}</div>
+         <Button size="medium" primary={true} available={true} onClickButton={() => onClickLogout()}>log out</Button>
+          </div>
+         </div>
+        }
+        
+    </div> )
 }
  
-export default Account;
+export default Account

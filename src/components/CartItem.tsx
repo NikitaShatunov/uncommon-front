@@ -1,8 +1,8 @@
-import { useAppDispatch } from "../redux/redux";
-import { ItemCart, removeItemCart } from "../redux/slices/cartSlice";
+import { useAppDispatch } from "../redux/redux"
+import { ItemCart, removeItemCart } from "../redux/slices/cartSlice"
 
 const CartItem = (item: ItemCart) => {
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
   return (
     <div className="cartItemContainer">
       <div style={{display: "flex", alignItems: "center", justifyContent: "space-around"}}>
@@ -21,7 +21,7 @@ const CartItem = (item: ItemCart) => {
       />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CartItem;
+export default CartItem

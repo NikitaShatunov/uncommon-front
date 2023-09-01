@@ -1,22 +1,29 @@
-import * as React from "react";
-import Input, { IFormValues } from "./Input";
-import Button from "./Button";
-import { useForm } from "react-hook-form";
-import { useAppDispatch } from "../redux/redux";
-import { fetchLogin } from "../redux/slices/authSlice";
+import Input, { IFormValues } from "./Input"
+import Button from "./Button"
+import { useForm } from "react-hook-form"
+import { useAppDispatch } from "../redux/redux"
+import { fetchLogin } from "../redux/slices/authSlice"
+import * as React from 'react'
 
 const LoginForm = () => {
   const dispatch = useAppDispatch()
-
+  const [warning, setWarning] = React.useState(false)
   const {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm<IFormValues>({ mode: "onBlur" });
-  const onSubmitForm = (data: any) => {
-    console.log(data);
-    dispatch(fetchLogin(data))
-  };
+  } = useForm<IFormValues>({ mode: "onBlur" })
+  const onSubmitForm = async (data: any) => {
+    const res = await dispatch(fetchLogin(data))
+    if(res?.payload?.token) {
+      window.localStorage.setItem('token', res.payload.token)
+    }
+    else {
+      setWarning(true)
+      setTimeout(() => setWarning(false), 2000)
+    }
+    
+  }
   return (
     <div className="loginForm">
       <h1>LOGIN</h1>
@@ -38,6 +45,7 @@ const LoginForm = () => {
           {errors?.password && errors?.password?.type === "required" && (
             <p>Field is required.</p>
           )}
+          {warning && <p>Email or password is incorrect.</p>}
         </div>
         <div className="buttonContainerLogin">
           <Button
@@ -52,7 +60,7 @@ const LoginForm = () => {
         </div>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default LoginForm;
+export default LoginForm

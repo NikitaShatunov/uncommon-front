@@ -1,18 +1,18 @@
-import { UseFormRegister } from "react-hook-form/dist/types";
+import { UseFormRegister } from "react-hook-form/dist/types"
 export interface IFormValues {
-  email: string;
-  password: string;
-  name: string;
-  gender: string;
-  phone: string;
-  "confirm password": string;
+  email: string
+  password: string
+  name: string
+  gender: string
+  phone: string
+  "confirm password": string
 }
 interface InputProps {
-  type: "text" | "number" | "password";
-  label: keyof IFormValues;
-  register: UseFormRegister<IFormValues>;
-  required: boolean;
-  error?: boolean;
+  type: "text" | "number" | "password"
+  label: keyof IFormValues
+  register: UseFormRegister<IFormValues>
+  required: boolean
+  error?: boolean
 }
 const Input = ({ type, label, register, required, error }: InputProps) => {
   return (
@@ -29,12 +29,12 @@ const Input = ({ type, label, register, required, error }: InputProps) => {
           type={type}
         />
       ) : (
-        <input {...register(label, { required })} type={type} />
+       label === "password" ?  <input {...register(label, { required, minLength: 6 })} type={type} /> :  <input {...register(label, { required })} type={type} />
       )}
 
       {label && <label htmlFor="input">{label}</label>}
     </div>
-  );
-};
+  )
+}
 
-export default Input;
+export default Input

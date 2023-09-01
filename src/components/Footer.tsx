@@ -24,7 +24,7 @@ const Footer = ({size, backgroundColor, color, links}: FooterProps) => {
             {id !== links.length - 1 && <li>|</li>}
           </div>
         ))}
-    </ul> );
+    </ul> )
 }
  
-export default Footer;
+export default Footer

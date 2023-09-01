@@ -1,16 +1,24 @@
-import Button from "./Button";
-import Input, { IFormValues } from "./Input";
-import * as React from "react";
-import { useForm } from "react-hook-form";
+import { useAppDispatch } from "../redux/redux"
+import { fetchRegistration } from "../redux/slices/authSlice"
+import Button from "./Button"
+import Input, { IFormValues } from "./Input"
+import { useForm } from "react-hook-form"
 const RegistrationForm = () => {
+  const dispatch = useAppDispatch()
   const {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm<IFormValues>({ mode: "onBlur" });
-  const onSubmitForm = (data: any) => {
-    console.log(data);
-  };
+  } = useForm<IFormValues>({ mode: "onBlur" })
+  const onSubmitForm = async (data: any) => {
+   const res = await dispatch(fetchRegistration(data))
+   if(res?.payload?.token) {
+    window.localStorage.setItem('token', res.payload.token)
+   }
+   else {
+    window.alert('Error when registration')
+   }
+  }
   return (
     <div className="registrationForm">
       <h1>REGISTRATION</h1>
@@ -23,8 +31,8 @@ const RegistrationForm = () => {
           error={Boolean(errors?.email)}
         />
     <div className="errorAlert">
-          {errors?.email && (errors?.email?.type === "required" && (
-            <p>Field is required.</p>) || <p>{errors?.email?.message}</p>
+          {errors?.email && (errors?.email?.type === "required" ? (
+            <p>Field is required.</p>) : <p>{errors?.email?.message}</p>
           )}
         </div>
         <Input
@@ -33,25 +41,12 @@ const RegistrationForm = () => {
           type="password"
           register={register}
           required={true}
-        />
-        {errors?.password && errors?.password?.type === "required" && (
-          <div className="errorAlert">
+        /> 
+        <div className="errorAlert">
+        {errors?.password && errors?.password?.type === "required" ? (
             <p>Field is required.</p>
-          </div>
-        )}
-        <Input
-          error={Boolean(errors?.["confirm password"])}
-          label="confirm password"
-          type="password"
-          register={register}
-          required={true}
-        />
-        {errors?.["confirm password"] &&
-          errors?.["confirm password"]?.type === "required" && (
-            <div className="errorAlert">
-              <p>Field is required.</p>
-            </div>
-          )}
+        ) : <p>{errors?.password && 'Minimum length is 6'}</p>}
+        </div> 
         <div className="radioContainer">
           <div>
             <input
@@ -87,7 +82,7 @@ const RegistrationForm = () => {
           required={true}
           error={Boolean(errors?.name)}
         />
-        {errors?.name && errors?.email?.type === "required" && (
+        {errors?.name && errors?.name?.type === "required" && (
           <div className="errorAlert">
             <p>Field is required.</p>
           </div>
@@ -117,7 +112,7 @@ const RegistrationForm = () => {
         </div>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default RegistrationForm;
+export default RegistrationForm
