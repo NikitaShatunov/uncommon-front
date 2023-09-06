@@ -54,6 +54,7 @@ const ItemPage = () => {
     }
   }, [params, itemData, error])
   React.useEffect(() => {}, [currentPhotoId, photos, loading])
+  
   const onClickArrow = (direction: boolean) => {
     if (direction) {
       if (currentPhotoId !== photos.length - 1) {
@@ -92,7 +93,8 @@ const ItemPage = () => {
           <div onClick={() => setIsPopUpShown(false)} style={isPopUpShown ? {display: "flex"} : {display: 'none'}} className="popUpImg">
             <img style={{ marginTop: '40px'}} src={photos[currentPhotoId]} alt="mainItem" />
           </div>
-            {currentPhotoId !== photos.length - 1 && (
+          <div className="albomDeskTop">
+          {currentPhotoId !== photos.length - 1 && (
               <img
                 onClick={() => onClickArrow(true)}
                 className="arrowRight"
@@ -122,7 +124,10 @@ const ItemPage = () => {
                 alt="sidePhotos"
               />
             )}
-
+          </div>
+              <div className="albomMobile">
+                {photos.map((link, i) => <img src={link} alt={i + 'photo'} key={i}/>)}
+              </div>
             <div className="details">
               <div className="header">
                 <div className="brand">{itemData?.brand}</div>

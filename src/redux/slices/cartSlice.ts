@@ -15,11 +15,24 @@ interface InitialState {
   count: number;
   sum: number;
 }
+const getJSONcartStorage: any = () => {
+  const dataItem = localStorage.getItem('cart')
+  const items = dataItem ? JSON.parse(dataItem) : []
+  const count = items.length
+  const sum = items.reduce((sum: any, acc: any) => sum + acc.price, 0)
+  return {
+      items,
+      count,
+      sum  
+    }
+}
+
+const { items, count, sum } = getJSONcartStorage()
 
 const initialState: InitialState = {
-  items: [],
-  count: 0,
-  sum: 0,
+  items: items,
+  count: count,
+  sum: sum,
 }
 
 const cartSlice = createSlice({

@@ -1,8 +1,8 @@
-import Input, { IFormValues } from "./Input"
-import Button from "./Button"
+import Input, { IFormValues } from "../Input"
+import Button from "../Button"
 import { useForm } from "react-hook-form"
-import { useAppDispatch } from "../redux/redux"
-import { fetchLogin } from "../redux/slices/authSlice"
+import { useAppDispatch } from "../../redux/redux"
+import { fetchLogin } from "../../redux/slices/authSlice"
 import * as React from 'react'
 
 const LoginForm = () => {

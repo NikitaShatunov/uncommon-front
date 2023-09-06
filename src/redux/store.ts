@@ -3,11 +3,13 @@ import sortSlice from "./slices/sortSlice"
 import fetchSlice from "./slices/fetchSlice"
 import cartSlice from "./slices/cartSlice"
 import authSlice from "./slices/authSlice"
+import orderSlice from "./slices/orderSlice"
 const rootReducer = combineReducers({
  sortSlice,
  fetchSlice,
  cartSlice,
- authSlice
+ authSlice,
+ orderSlice
 })
 export const store = configureStore({
   reducer: rootReducer,

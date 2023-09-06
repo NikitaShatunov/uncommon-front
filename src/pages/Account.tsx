@@ -1,5 +1,5 @@
-import LoginForm from "../components/LoginForm"
-import RegistrationForm from "../components/RegistrationForm"
+import LoginForm from "../components/Forms/LoginForm"
+import RegistrationForm from "../components/Forms/RegistrationForm"
 import * as React from 'react'
 import { useAppDispatch, useAppSelector } from "../redux/redux"
 import Button from "../components/Button"
@@ -17,7 +17,7 @@ const Account = () => {
     }
     return ( <div className="accountContainer">
         {
-            data.length === 0 ? <div className="fomrWrapper">
+            data.length === 0 ? <div className="formWrapper">
             <LoginForm />
             <RegistrationForm />
          </div> : <div className="accountWrapper">

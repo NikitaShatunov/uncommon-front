@@ -2,6 +2,7 @@ import { useAppSelector } from "../redux/redux"
 import * as React from "react"
 import Button from "./Button"
 import CartItem from "./CartItem"
+import { useNavigate } from "react-router-dom"
 
 interface CartProps {
   isCartShown: boolean
@@ -11,6 +12,7 @@ interface CartProps {
 const Cart = ({ isCartShown, handler }: CartProps) => {
   const { items, sum, count } = useAppSelector((state) => state.cartSlice)
   const refCart = React.useRef<HTMLDivElement>(null)
+  const navigate = useNavigate()
   React.useEffect(() => {
     const clickOutside = (event: MouseEvent) => {
       let path = event.composedPath().includes(refCart.current as Node)
@@ -23,7 +25,14 @@ const Cart = ({ isCartShown, handler }: CartProps) => {
       document.removeEventListener("click", clickOutside)
     }
   }, [isCartShown, handler])
-  React.useEffect(() => {}, [items])
+  React.useEffect(() => {
+    const cartJSON = JSON.stringify(items)
+    window.localStorage.setItem('cart', cartJSON)
+  }, [items])
+  const onClickBuyNow = () => {
+    navigate('/bag')
+    handler()
+  }
   return (
     <>
       <div className={`cart ${isCartShown ? "cart__shown" : ""}`}>
@@ -60,7 +69,7 @@ const Cart = ({ isCartShown, handler }: CartProps) => {
                 <Button
                   size="medium"
                   primary={true}
-                  onClickButton={() => console.log("click")}
+                  onClickButton={() => onClickBuyNow()}
                   available={true}
                 >
                   BUY NOW

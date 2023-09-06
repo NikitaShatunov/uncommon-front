@@ -9,6 +9,10 @@ import Account from './pages/Account'
 import { useAppDispatch } from './redux/redux'
 import * as React from 'react'
 import { fetchAuthMe } from './redux/slices/authSlice'
+import Bag from './pages/Order/Bag'
+import Payment from './pages/Order/Payment'
+import Success from './pages/Success'
+import Address from './pages/Order/Adress'
 
 function App() {
   const location = useLocation()
@@ -25,6 +29,10 @@ function App() {
        <Route path='/catalog' element={<Catalog />}/>
        <Route path='/catalog/:id' element={<ItemPage/>} />
        <Route path='/account' element={<Account/>}/>
+       <Route path='/bag' element={<Bag />}/>
+       <Route path='/checkout/address' element={<Address />}/>
+       <Route path='/checkout/payment' element={<Payment />}/>
+       <Route path='/success' element={<Success />}/>
       </Routes>
      </div>
       <Footer size='large' links={['instagram', 'terms of use', 'privacy & policy', 'about us', 'shipping' ]}/>

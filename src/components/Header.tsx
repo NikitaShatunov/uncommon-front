@@ -21,9 +21,11 @@ const Header = ({
   const [isCartShown, setIsCartShown] = React.useState(false)
   const items = useAppSelector(state => state.cartSlice.items)
   React.useEffect(() => {
+   if(window.location.pathname !== '/bag') {
     if(!isCartShown && items.length) {
       setIsCartShown(true)
     }
+   }
   }, [items])
   React.useEffect(() => {
 

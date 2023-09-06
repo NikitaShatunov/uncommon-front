@@ -16,6 +16,7 @@ const Catalog = () => {
 
  const dispatch = useAppDispatch()
  const navigate = useNavigate()
+ 
  const fetchData = async () => {
   const props = {
     genders,
