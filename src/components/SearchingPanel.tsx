@@ -7,7 +7,7 @@ const SearchingPanel = () => {
         setValue(value)
     } 
     return (<div className="searcgingPanel">
-        <Searching value={value} onChangeInput={onChangeInput}/>
+        {/* <Searching value={value} onChangeInput={onChangeInput}/> */}
     </div>)
 }
  

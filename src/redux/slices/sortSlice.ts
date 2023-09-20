@@ -29,13 +29,19 @@ const sortSlice = createSlice({
   initialState,
   reducers: {
     setGenders(state, action) {
-      state.genders.push(action.payload)
+      if(!state.genders.includes(action.payload)) {
+        state.genders.push(action.payload)
+      }
     },
     setCategories(state, action) {
-      state.categories.push(action.payload)
+      if(!state.categories.includes(action.payload)) {
+        state.categories.push(action.payload)
+      }
     },
     setColors(state, action) {
-      state.colors.push(action.payload)
+      if(!state.colors.includes(action.payload)) {
+        state.colors.push(action.payload)
+      }
     },
     removeGenders(state, action) {
       state.genders = state.genders.filter(g => g!== action.payload)

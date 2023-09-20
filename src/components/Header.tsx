@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import * as React from "react"
 import Cart from "./Cart"
-import { useAppSelector } from "../redux/redux"
+import { useAppDispatch, useAppSelector } from "../redux/redux"
 
 interface HeaderProps {
   size: "small" | "medium" | "large"
@@ -20,6 +20,7 @@ const Header = ({
 }: HeaderProps) => {
   const [isCartShown, setIsCartShown] = React.useState(false)
   const items = useAppSelector(state => state.cartSlice.items)
+
   React.useEffect(() => {
    if(window.location.pathname !== '/bag') {
     if(!isCartShown && items.length) {

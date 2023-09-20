@@ -1,4 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../redux/redux"
+import { setCurrentPage } from "../redux/slices/fetchSlice"
 import {
   clearSort,
   removeCategories,
@@ -46,16 +47,19 @@ const SideBar = () => {
   const [isPopUpShown, setIsPopUpShown] = React.useState(false)
   const dispatch = useAppDispatch()
   const onClickGender = (g: GendersType) => {
+    dispatch(setCurrentPage(1))
     if (genders.includes(g)) {
       dispatch(removeGenders(g))
     } else dispatch(setGenders(g))
   }
   const onClickCategories = (c: CatsType) => {
+    dispatch(setCurrentPage(1))
     if (categories.includes(c)) {
       dispatch(removeCategories(c))
     } else dispatch(setCategories(c))
   }
   const onClickColors = (c: ColorsType) => {
+    dispatch(setCurrentPage(1))
     if (colors.includes(c)) {
       dispatch(removeColors(c))
     } else dispatch(setColors(c))
@@ -69,7 +73,10 @@ const SideBar = () => {
       <div className="label">
         <span>refine</span>
         <span> | </span>
-        <span className="clearAllBtn" onClick={() => dispatch(clearSort())}>
+        <span className="clearAllBtn" onClick={() => {
+          dispatch(clearSort())
+          dispatch(setCurrentPage(1))}
+          }>
           clear all
         </span>
       </div>
@@ -79,7 +86,9 @@ const SideBar = () => {
          {isPopUpShown ? <span className="plusBtn"> - </span> :  <span className="plusBtn"> + </span> }
         </span>
         
-       {isPopUpShown && <><span> | </span> <span className="clearAllBtn" onClick={() => dispatch(clearSort())}>
+       {isPopUpShown && <><span> | </span> <span className="clearAllBtn" onClick={() => {
+        dispatch(clearSort())
+        dispatch(setCurrentPage(1))}}>
           clear all
         </span></>}
       </div>

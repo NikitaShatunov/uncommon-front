@@ -5,28 +5,22 @@ import SearchingPanel from "../components/SearchingPanel"
 import SideBar from "../components/SideBar"
 import { Item } from "./ItemPage"
 import { useAppDispatch, useAppSelector } from "../redux/redux"
-import { fetchItems } from "../redux/slices/fetchSlice"
+import { fetchItems, setCurrentPage } from "../redux/slices/fetchSlice"
 import ItemSkeleton from "../components/ItemSkeleton"
 import { useNavigate } from "react-router-dom"
 import { setCategories, setColors, setGenders } from "../redux/slices/sortSlice"
+import Pagination from "../components/Pagination"
 
 const Catalog = () => {
  const {loading, error, data} = useAppSelector(state => state.fetchSlice)
  const {genders, categories, colors} =  useAppSelector((state) => state.sortSlice)
-
+ const page = useAppSelector(state => state.fetchSlice.currentPage)
+ const [paramsLoad, setParamsLoad] = React.useState(false)
  const dispatch = useAppDispatch()
  const navigate = useNavigate()
  
- const fetchData = async () => {
-  const props = {
-    genders,
-    categories,
-    colors
-  }
-  dispatch(fetchItems(props))
-}
- React.useEffect(() => {
-  const params = qs.parse(window.location.search.substring(1))
+  const getParams = () => {
+    const params = qs.parse(window.location.search.substring(1))
   if (params.genders && Array.isArray(params.genders)) {
     params.genders.map(key => dispatch(setGenders(key)))
   }
@@ -36,24 +30,43 @@ const Catalog = () => {
   if (params.colors && Array.isArray(params.colors)) {
     params.colors.map(key => dispatch(setColors(key)))
   }
-  
- }, [])
+  if (params.page) {
+    dispatch(setCurrentPage(+params.page))
+  }
+  setParamsLoad(true)
+  }
+
+ const fetchData = () => {
+  const props = {
+    genders,
+    categories,
+    colors,
+    page
+  }
+  dispatch(fetchItems(props))
+}
  React.useEffect(() => {
-  fetchData()
- }, [genders, categories, colors])
+   getParams()
+ }, [])
   React.useEffect(() => {    
-    if(data.length) {
+     if(data.length) {
       const queryString = qs.stringify({
+        page,
         genders,
         categories,
-        colors
+        colors,
       })
       navigate(`?${queryString}`)
     }
-  }, [data, genders, categories, colors, error])
+  }, [data, genders, categories, colors, error, page])
+  React.useEffect(() => {
+    paramsLoad && fetchData()
+   }, [genders, categories, colors, page, paramsLoad])
+   
   return (
     <div className="catalog__wrapper">
       <SearchingPanel />
+      <Pagination />
         <div className="main">
             <SideBar />
           <div className="catalogCarts">

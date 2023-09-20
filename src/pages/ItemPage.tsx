@@ -7,6 +7,7 @@ import Button from "../components/Button"
 import { addItemCart } from "../redux/slices/cartSlice"
 import { v4 as uuidv4 } from 'uuid'
 import ItemPageSkeleton from "../components/ItemPageSkeleton"
+import AlbomDeskTop from "../components/ItemPageComponents/AlbomDeskTop"
 
 export interface Item {
   id: number
@@ -31,6 +32,8 @@ const ItemPage = () => {
   const [currentPhotoId, setCurrentPhotoId] = React.useState(0)
   const [isPopUpShown, setIsPopUpShown] = React.useState(false)
   const [isButtonAvailable, setIsButtonAvailable] = React.useState(false)
+  const [isDescriptionShown, setIsDescriptionShown] = React.useState(false)
+  const albomPhotoRef = React.useRef<HTMLImageElement>(null)
 
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -83,6 +86,9 @@ const ItemPage = () => {
       dispatch(addItemCart(item))
     }
   }
+  const onClickPopUpPhoto = () => {
+    setIsPopUpShown(false)
+  }
   return (
     <div className="itemPage">
       <div className="main">
@@ -90,41 +96,11 @@ const ItemPage = () => {
         {loading && <ItemPageSkeleton />}
         {error ? <div style={{width: '100%', height: "100%", display: 'flex', justifyContent: 'center'}}><img style={{marginTop: '100px'}} src="/img/error.svg" alt="error"/></div> : <>{!loading && (
           <>
-          <div onClick={() => setIsPopUpShown(false)} style={isPopUpShown ? {display: "flex"} : {display: 'none'}} className="popUpImg">
-            <img style={{ marginTop: '40px'}} src={photos[currentPhotoId]} alt="mainItem" />
+          {isPopUpShown && <div ref={albomPhotoRef} className="popUpAlbom">{photos.map((url,id) => <img onClick={() => setCurrentPhotoId(id)} className={id === currentPhotoId ? "active" : ''} key={id} src={url} alt={"albomPhoto" + id}/>)}</div>}
+          <div onClick={() => onClickPopUpPhoto()} style={isPopUpShown ? {display: "flex"} : {display: 'none'}} className="popUpImg">
+            <img className="maiPhoto" style={{ marginTop: '40px'}} src={photos[currentPhotoId]} alt="mainItem" />
           </div>
-          <div className="albomDeskTop">
-          {currentPhotoId !== photos.length - 1 && (
-              <img
-                onClick={() => onClickArrow(true)}
-                className="arrowRight"
-                src="/img/arrow.svg"
-                alt="arrowRight"
-              />
-            )}
-            {currentPhotoId !== 0 && (
-              <img
-                onClick={() => onClickArrow(false)}
-                className="arrowLeft"
-                src="/img/arrow.svg"
-                alt="arrowLeft"
-              />
-            )}
-            <img
-            style={{cursor: "zoom-in"}}
-              onClick={() => setIsPopUpShown(true)}
-              className="mainPhoto"
-              src={photos[currentPhotoId]}
-              alt="mainphoto"
-            />
-            {currentPhotoId !== photos.length - 1 && (
-              <img
-                className="secondPhoto"
-                src={photos[currentPhotoId + 1]}
-                alt="sidePhotos"
-              />
-            )}
-          </div>
+          <AlbomDeskTop setIsPopUpShown={setIsPopUpShown} photos={photos} currentPhotoId={currentPhotoId} onClickArrow={onClickArrow}/>
               <div className="albomMobile">
                 {photos.map((link, i) => <img src={link} alt={i + 'photo'} key={i}/>)}
               </div>
@@ -134,7 +110,8 @@ const ItemPage = () => {
                 <div className="price">€ {itemData?.price}</div>
                 <div className="title">{itemData?.title}</div>
               </div>
-              <div className="description">{itemData?.description}</div>
+              {!isDescriptionShown ? <div onClick={() => setIsDescriptionShown(true)} style={{cursor: 'pointer'}} className="description">{itemData?.description?.slice(0, 40)}... +</div> : <div className="description">{itemData?.description}</div>}
+              
               <ul className="features">
                 {itemData?.features &&
                   itemData?.features.map((f, i) => <li key={i}>{f}</li>)}

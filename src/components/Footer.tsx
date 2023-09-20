@@ -6,7 +6,7 @@ interface FooterProps {
   }
 
   const hashLink: any = {
-    "instagram" : "",
+    "instagram" : "https://www.instagram.com/",
     "terms of use" : "",
     "privacy & policy" : "",
     "about us" : "/about",

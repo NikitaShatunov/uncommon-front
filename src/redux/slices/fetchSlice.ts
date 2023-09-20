@@ -4,8 +4,8 @@ import { Item } from '../../pages/ItemPage'
 
 
 
-export const fetchItems: any = createAsyncThunk('data/fetchItems', async ({genders, categories, colors}: any) => {
-  let queryString = `?`
+export const fetchItems: any = createAsyncThunk('data/fetchItems', async ({genders, categories, colors, page}: any) => {
+  let queryString = `?page=${page}&`
   if(genders.length) {
     genders.forEach((element: string) => {
       queryString += `gender=${element}&`
@@ -31,11 +31,15 @@ export const fetchItemsById: any = createAsyncThunk('data/fetchItemsById', async
 
   interface InitialState {
     data: [],
+    currentPage: number,
+    pagesNumber: number,
     item: Item,
     loading: boolean,
     error: boolean,
   }
   const initialState: InitialState = {
+    currentPage: 1,
+    pagesNumber: 1,
     data: [],
     item: {
         id: 0,
@@ -61,11 +65,15 @@ const fetchSlice = createSlice({
   reducers: {
     setItems(state, action) {
       state.data = action.payload
+  },
+  setCurrentPage(state, action) {
+    state.currentPage = action.payload
   }
 },
 extraReducers: (builder) => {
     builder.addCase(fetchItems.fulfilled, (state, action) => {
-      state.data = action.payload
+      state.data = action.payload.data
+      state.pagesNumber = Math.ceil(action.payload.rows / 3)
       state.loading = false
       state.error = false
     })
@@ -91,5 +99,5 @@ extraReducers: (builder) => {
   },
 })
 
-export const { setItems } = fetchSlice.actions
+export const { setItems, setCurrentPage } = fetchSlice.actions
 export default fetchSlice.reducer

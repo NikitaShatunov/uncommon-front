@@ -1,5 +1,5 @@
 .wrapper {
-    min-height: 100vh;
+    min-height: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -256,9 +256,28 @@
             justify-content: center;
             top: -180px;
             z-index: 2;
-            img {
+            .maiPhoto {
                 left: 50%;
                 height: 1200px;
+            }
+            
+        }
+        .popUpAlbom {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            z-index: 3;
+            position: fixed;
+            bottom: 0; 
+            img {
+                cursor: pointer;
+                width: 70px;
+                opacity: 0.7;
+                margin-right: 14px;
+                margin-bottom: 14px;
+            }
+            .active {
+                opacity: 1;
             }
         }
         .albomDeskTop {
@@ -317,7 +336,7 @@
         margin-left: 20px;
         margin-bottom: 44px;
         width: 354px;
-        height: 664px;
+        min-height: 664px;
         font-size: 24px;
         font-style: normal;
         font-weight: 400;
@@ -505,6 +524,7 @@
 
 .accountContainer {
     width: 100%;
+    min-height: 90vh;
     .formWrapper {
         padding-bottom: 20px;
         @media screen and (min-width: 900px) {
@@ -837,4 +857,28 @@
             width: 90%;
         }
      }
+}
+
+
+.paginationContainer {
+    position: absolute;
+    @media screen and (max-width: 900px) {
+       left: 20px;
+       top: 220px;
+     }
+    top: 190px;
+    right: 40px;
+    display: flex;
+    .paginationCell {
+        cursor: pointer;
+        margin-left: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 20px;
+        height: 20px;
+    }
+    .selected {
+        text-decoration: underline;
+    }
 }
