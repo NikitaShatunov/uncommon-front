@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../../redux/redux'
 import { saveAddressInormation } from '../../redux/slices/orderSlice'
-import Button from '../Button'
-import Input, { IFormValues } from '../Input'
+import Button from '../UI/Button'
+import Input, { IFormValues } from '../UI/Input'
 import { useForm } from 'react-hook-form'
 import * as React from 'react'
 

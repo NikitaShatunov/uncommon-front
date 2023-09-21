@@ -15,9 +15,9 @@ const Home = () => {
       </div></div>
       <h1>New collection:</h1>
       <div className="imageContainer">
-       <div> <img src="/img/newCollection/image1.svg" alt="image1" /></div>
-      <div>  <img src="/img/newCollection/image2.svg" alt="image2" /></div>
-      <div><img src="/img/newCollection/image3.svg" alt="image3" /></div>
+       <div><img className="gif" src="/img/newCollection/gif1.gif" alt="gif1" /> <img src="/img/newCollection/image1.svg" alt="image1" /></div>
+      <div> <img className="gif" src="/img/newCollection/gif2.gif" alt="gif2" />  <img src="/img/newCollection/image2.svg" alt="image2" /></div>
+      <div> <img className="gif" src="/img/newCollection/gif3.gif" alt="gif3" /> <img src="/img/newCollection/image3.svg" alt="image3" /></div>
       </div>
       <h3>we are uncommon</h3>
       <img className="rockimg" src="/img/rock.svg" alt="rock" />

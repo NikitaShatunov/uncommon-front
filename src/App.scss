@@ -95,6 +95,15 @@
         line-height: normal;
     }
     .imageContainer {
+        .gif {
+            opacity: 0;
+            position: absolute;
+            width: 500px;
+            height: 752px;
+            &:hover {
+                opacity: 1;
+            }
+        }
         display: block;
         div {
             margin-top: 64px;
@@ -632,11 +641,11 @@
 }
 
 .bag {
+    min-height: 90vh;
     position: relative;
     @media screen and (min-width: 900px) {
         display: flex;
         justify-content: center;
-    align-items: center;
     }
     .table {
         margin-top: 40px;
@@ -727,6 +736,7 @@
 
 .addressContainer, .paymentContainer {
     padding: 20px 200px;
+    min-height: 90vh;
     @media screen and (max-width: 900px) {
         padding: 20px 20px;
      }
@@ -840,8 +850,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50vh;
     padding: 14px;
+    min-height: 90vh;
     h1 {
         font-weight: 800;
         font-size: 32px;

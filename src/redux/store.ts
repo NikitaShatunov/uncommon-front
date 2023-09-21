@@ -1,4 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
+import { api } from "./fetchData"
 import sortSlice from "./slices/sortSlice"
 import fetchSlice from "./slices/fetchSlice"
 import cartSlice from "./slices/cartSlice"
@@ -9,10 +10,13 @@ const rootReducer = combineReducers({
  fetchSlice,
  cartSlice,
  authSlice,
- orderSlice
+ orderSlice,
+ [api.reducerPath]: api.reducer,
 })
 export const store = configureStore({
   reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(api.middleware),
 })
 
 export type RootState = ReturnType<typeof rootReducer>

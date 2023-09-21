@@ -1,6 +1,6 @@
 import { useAppSelector } from "../redux/redux"
 import * as React from "react"
-import Button from "./Button"
+import Button from "./UI/Button"
 import CartItem from "./CartItem"
 import { useNavigate } from "react-router-dom"
 

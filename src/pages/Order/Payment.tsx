@@ -2,7 +2,7 @@ import * as React from 'react'
 import { useAppSelector } from '../../redux/redux'
 import { useNavigate } from 'react-router-dom'
 import InformationBlock from '../../components/InformationBlock'
-import Button from '../../components/Button'
+import Button from '../../components/UI/Button'
 import PayCard from '../../components/Forms/PayCard'
 
 const Payment = () => {
