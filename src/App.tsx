@@ -11,7 +11,7 @@ import * as React from 'react'
 import { fetchAuthMe } from './redux/slices/authSlice'
 import Bag from './pages/Order/Bag'
 import Payment from './pages/Order/Payment'
-import Success from './pages/Success'
+import Success from './pages/Order/Success'
 import Address from './pages/Order/Adress'
 
 function App() {

@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { useAppDispatch, useAppSelector } from '../redux/redux'
+import { useAppDispatch, useAppSelector } from '../../redux/redux'
 import { useNavigate } from 'react-router-dom'
-import { clearOrderSlice } from '../redux/slices/orderSlice'
-import { clearCart } from '../redux/slices/cartSlice'
+import { clearOrderSlice } from '../../redux/slices/orderSlice'
+import { clearCart } from '../../redux/slices/cartSlice'
 
 const Success = () => {
     const dispatch = useAppDispatch()
