@@ -1,4 +1,4 @@
-import Searching from "./Searching"
+import Searching from "./UI/Searching"
 import * as React from 'react'
 
 const SearchingPanel = () => {

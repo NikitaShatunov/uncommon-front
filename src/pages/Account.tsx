@@ -2,7 +2,7 @@ import LoginForm from "../components/Forms/LoginForm"
 import RegistrationForm from "../components/Forms/RegistrationForm"
 import * as React from 'react'
 import { useAppDispatch, useAppSelector } from "../redux/redux"
-import Button from "../components/Button"
+import Button from "../components/UI/Button"
 import { logout } from "../redux/slices/authSlice"
 
 const Account = () => {

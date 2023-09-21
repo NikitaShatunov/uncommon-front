@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useAppDispatch, useAppSelector } from '../../redux/redux'
 import { removeItemCart } from '../../redux/slices/cartSlice'
-import Button from '../../components/Button'
+import Button from '../../components/UI/Button'
 import { useNavigate } from 'react-router-dom'
 import { addItemsIntoOrder } from '../../redux/slices/orderSlice'
 

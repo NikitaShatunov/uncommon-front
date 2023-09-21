@@ -1,7 +1,7 @@
 import { useAppDispatch } from "../../redux/redux"
 import { fetchRegistration } from "../../redux/slices/authSlice"
-import Button from "../Button"
-import Input, { IFormValues } from "../Input"
+import Button from "../UI/Button"
+import Input, { IFormValues } from "../UI/Input"
 import { useForm } from "react-hook-form"
 const RegistrationForm = () => {
   const dispatch = useAppDispatch()

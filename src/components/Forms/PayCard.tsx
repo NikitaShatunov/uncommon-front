@@ -1,5 +1,5 @@
-import Input, { IFormValues } from '../Input'
-import Button from '../Button'
+import Input, { IFormValues } from '../UI/Input'
+import Button from '../UI/Button'
 import { useForm } from 'react-hook-form'
 import { useAppDispatch, useAppSelector } from '../../redux/redux'
 

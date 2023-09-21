@@ -1,9 +1,9 @@
 import * as React from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import SizeButton from "../components/SizeButton"
+import SizeButton from "../components/UI/SizeButton"
 import { useAppDispatch, useAppSelector } from "../redux/redux"
 import { fetchItemsById } from "../redux/slices/fetchSlice"
-import Button from "../components/Button"
+import Button from "../components/UI/Button"
 import { addItemCart } from "../redux/slices/cartSlice"
 import { v4 as uuidv4 } from 'uuid'
 import ItemPageSkeleton from "../components/ItemPageSkeleton"

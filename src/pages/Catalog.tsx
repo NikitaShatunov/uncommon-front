@@ -10,7 +10,6 @@ import ItemSkeleton from "../components/ItemSkeleton"
 import { useNavigate } from "react-router-dom"
 import { setCategories, setColors, setGenders } from "../redux/slices/sortSlice"
 import Pagination from "../components/Pagination"
-
 const Catalog = () => {
  const {loading, error, data} = useAppSelector(state => state.fetchSlice)
  const {genders, categories, colors} =  useAppSelector((state) => state.sortSlice)
